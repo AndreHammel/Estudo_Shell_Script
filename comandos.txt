@@ -1,0 +1,311 @@
+ 1097  sudo apt install gnome-control-center
+ 1098  gnome-control-center
+ 1620  history | grep -i control
+ 1621  history | grep -i control | cat > ~/unix_test/comandos.txt
+  764  conda config --set auto_activate_base False
+  819  conda config --set auto_activate_base False
+ 1622  history | grep -i False
+ 1623  history | grep -i False | cat >> ~/unix_test/comandos.txt
+ps axu |grep bash (mostra o PID)
+
+
+
+
+7. Principais comando Linux Parte 2
+cat -b arq.txt (numero as linhas que não estejam em branco)
+cat -n arq.txt (numero linhas mesmo que estejam em branco)
+cat -A arq.txt (mostra indicação de caracteres especiais)
+tac arq.txt (le de baixo para cima)
+tail -n5 arq.txt (ultimas cinco linhas)
+head -n5 file.txt (primeiras cinco linhas)
+head -c10 file.txt (primeiros 10 caracteres do file)
+wc file.txt (numero de linhas, palavras e caracteres) 
+wc -l (linhas ) wc -c (numero de bytes) wc -w (numero de palavras)
+sort file.txt (ordenar alfabeticamente)
+sort -r file.txt (reverse a ordenação)
+sort -k2 file.txt (indice de ordenação o segundo campo)
+sort -k3 -t":" file.txt (terceiro campo delimitado com :)
+sort -k3 -t":" file.txt (flag g explicita que ordenação deve ser feita numericamente)
+uniq file.txt (mostra os valores unicos, tira os repetidos *os dados precisam estar em sequencia)
+sort file.txt | uniq (valores unicos com ordenação antes)
+sort file.txt | uniq -u (valores que apareceram somente uma vez)
+sort file.txt | uniq -d (mostra valores que apareceram mais de uma vez)
+sort file.txt | uniq -c (conta as repetições)
+sort file.txt | uniq -c |sort ( ordena por aquele que aparece mais repetições)
+sort file.txt | uniq -c |sort | head -n1 (somente a primeira linha na qual aparece mais repetições)
+
+8.Principais comandos Linux - Parte 3
+whatis tr
+cat file.txt |tr a e ( troca as letras a pela letra e)
+cat file.txt |tr a-z A-Z (troca minusculos por maiusculos)
+cat file.txt |tr aei AEI (troca somente aei por AEI)
+cat file.txt |tr ' ' '\t' (troca espaços por tabs)
+cat file.txt |tr -d aei (deleta letras aei)
+echo "curso shell script" |tr l L
+echo "curso shell script" |tr -s 'l' (faz um double l ficar um single l)
+echo "curso shell script" |tr [:lower:] [:upper:]
+cat file.txt |cut -c1-5 (corta caracteres de 1 ao 5)
+cat file.txt |cut -c1,2,3 (corta caracteres 1, 2 3)
+cat file.txt |cut -c-5 (corta ate caracter 5 )
+cat file.txt |cut -c5- (corta do caracter 5 em diante)
+cat file.txt |cut -f1 (mostra somente campo 1)
+cat file.txt |cut -d" " -f1-3 (campo separado por espaços,mostra campo 1 ao 3)
+cat file.txt |cut -d":" -f1,5 (campo separado por :, mostra campo 1 e 5)
+diff file1.txt file.txt (diferença entre files1 e file)
+diff -w  file1.txt file.txt (ignora espaços em brancos)
+diff -r file1.txt file.txt (compara diretorios)
+
+9. Principais comandos Linux - Parte 4
+cat file.txt |grep Claudia (procura por Claudia em file)
+grep Claudia file.txt (procura por Claudia em file)
+grep "Ricardo da Silva" file.txt (procura por uma string completa)
+grep -i ricardo file.txt (procuro sem case-sensitive)
+grep -c Ana file.txt (conta quantas vezes aparece a palavra Ana)
+grep -v Ana file.txt (mostra linhas que não contenham Ana)
+grep -r Ana * (procura Ana em todos os file dentro desse diretorio)
+grep -l Ana * (mostra somente os arquivos que contem Ana)
+grep -A3 Carlos (mostra 3 linhas depois de Carlos)
+grep -B3 Carlos (mostra 3 linhas antes de Carlos)
+fgrep (somente para strings)
+egrep (expressoes regulares)
+sed '1,3 d' file.txt (deletar linha 1 ate 3)
+sed '/Rafael/d' file.txt (procura por Rafael e deleta a linha)
+sed 's/Paulo/Joao/' file.txt (substituir Paulo por Joao)
+sed 's/Linux/Unix/' file.txt (substitui somente a primeira ocorrencia)
+sed 's/Linux/Unix/g' file.txt (substitui todas as ocorrencias)
+sed 's/ //g' file.txt (substitui todos os espaços)
+more file.txt (mostra paginando, ENTER(desce), ESPAÇO(proxima pagina))
+less file.txt (mostra paginando, ENTER,ESPAÇO, SOBE, DESCE, /(faz pesquisa), n(next ocorrencia),N(volta ocorrencia)
+cat file.txt | less (mostra paginando arquivo file.txt)
+
+10.Principais comandos Linux - Parte 5
+find (procura por arq e diretorios)
+find ./ -name alunos.txt (procurar diretorio atual para frente ./ pelo nome)
+find ./ -user ricardo -name file.txt (usuario ricardo com nome file.txt)
+find ./ name alunos* -exec ls -l {} \; (executa ls -l em cada arquivo)
+date (mostra data e hora do sistema)
+date +%H (mostra a hora)
+date +%M (mostra minuto)
+date +%m (mostra o mês)
+date +%d (mostra o dia)
+date +%D (mostra a data)
+date +%d:%m (mostra o dia e o mes)
+date +%d/%m (mostra o dia e o mes)
+seq 10 (sequencia de 1 ate 10)
+seq 0 10 (sequencia de 0 ate 10)
+seq 5 2 30 (sequencia começa em 5 de 2em2 ate 30)
+expr 5 + 2 (fazer conta de soma)
+expr 5 - 2 (fazer conta de subtração)
+expr 5 \* 2 (fazer conta de multiplicação)
+echo 3 + 2|bc (faz conta também)
+echo "(3+2)*5" |bc (faz conta de multiplicação com bc)
+
+11. Execução de comandos do Shell
+; (para varios comando sequenciais)
+&& (comando sequenciais, se primeiro comando falhar ele não continua)
+|| (se primeiro comando for com sucesso não vai para o segundo comando)
+(cd ..; ls -l) (executa os comandos sem sair do diretorio)
+
+12.Redirecionamento de entrada e saida
+**saida**
+> e >> (diferença entre eles)
+2> e 2>> (saida de erro)
+ls -l alunos2.txt > log.out 2> log-erro.out (se não der erro joga para log.out senão joga para log-erro.out)
+ls -l alunos2.txt > log.out 2>>&1 (dando erro ou não jogará para o log.out)
+ls -l alunos2.txtx > /dev/null (joga a msn de erro para o null(buraco negro do shell) - não aparecerá na tela)
+**entrada**
+cat alunos.txt |tr a Z (comando tr recebe uma entrada)
+tr 'a' 'Z' < alunos.txt (usa o < para mandar o tr)
+
+13.Variáveis de Shell
+env | less (variáveis de ambiente)
+set | less (também mostra variáveis de amb)
+echo $HOME (precisa usar o $ para mostrar o valor da val)
+VARIAVEL=valor (declarando val VARIAVEL com valor)
+CURSO="Curso de Shell Script" (usando numa frase com espaço precisa proteger com ")
+echo $$ (mostra PID do bash atual)
+HORA=`date +%H` (variavel HORA recebe a função date - precisa estar entre crases)
+MINUTO=$(date +%M) (variavel MINUTO receve a função date - precisa usar $ e parentes)
+bash (tras o bash filho do bash atual)
+env (ve somente a variavel que foi exportada, precisa ser exportada)
+set (ve variavel local e global)
+export VAR1=Valor (criando e exportanto variavel)
+
+14.O uso das Aspas no Shell
+echo * (todos os arquivos do diretorios atual)
+echo "*" (protegido, agora é um string)
+echo '*' (protegido, agora é um string)
+echo \* (protegido, agora é um string)
+$ ` / (aspas duplas não protege esse caracteres, aspas simples protege)
+"$TESTE" (não está protegido)
+'$TESTE' (está protegido)
+\ (protege os espaços)
+echo curso\ \ \ \ \ \shel     scritp (está protegido no primeiro campo)
+
+15.O Editor VI
+3 modos de trabalho: navegação, edição(insert), comando 
+inserção - tecla I
+comando - tecla :
+:1 - primeira linha do arquivo
+:$ - ultima linha do arquivo
+:20 - linha 20
+:!ls - Sair do VI, executa o comando e volta para VI
+/linux - procura de cima para baixa
+n - proxima palavra (next)
+shift +n - volta para palavra anterior
+?linux - procura de baixo para cima
+dd - deleta e também recorta
+d4d - deleta e também recorta 4 linhas
+p - colar na linha abaixo do cursor (paste)
+yy - copia
+y5y -copia 5 linhas
+:w - salva arquivo
+:wq - salva e sair
+:q! - sai sem confirmar para salvar
+:x - sai  salva
+
+16.File Globbing 
+file globbing x REGEX -> caracteres especiais
+ls Aula* - caracter *
+ls -la Aula[123] - colchete mostra caracteres de interesse -> Aula1, Aula2, Aula3
+ls -la Aula[1-5] - caracteres de 1 ao 5
+ls -la Aul[Aa][123] - caracter a ou A e de 1, 2 ,3
+ls -la *[12] - qualquer coisa que termine com 1 ou 2
+ls -la {Aula, AULA}[1,2] - retornar Aula ou Aula que termine com 1 ou 2
+ls -l {Aula, AULA}11 - retorna Aula11 e AULA11
+ls -la Aula1* - retorna qualquer coisa com Aula1 de começo (mesmo que depois não venha nada)
+ls -la Aula1? - retorna qualquer coisa com Aula1 e que tenha mais um caracter no final (não somente Aula1)
+ls -la Aula? - somente um caracter depois de Aula
+ls -la Aula?? - somente com dois caracteres depois de Aula
+
+17. Básico de expressões regulares
+egrep ou grep -e  - expressões regulares estendidas
+egrep Linux texto.txt - mostra a linha que tem a palavra linux
+egrep "[Ll]inux" texto.txt - comece com L ou l
+egrep "b[aei]g" file.txt - algo que comece com b e segue com a ou e ou i e finaliza com g
+egrep "b[a-o] file.txt - algo de que comece com b e segue de a até o 
+egrep "^Linux" file.txt - retorne tudo que na qual  primeira palavra da linha seja Linux
+egrep "^#" file.txt - retorne tudo que na qual a primeira caracter palavra da linha seja #
+egrep -v "^#" file.txt - retorne tudo que não tenha o primeiro caracter # na linha
+egrep "Linux$" file.txt - palavra Linux no final da linha
+egrep "^$" file.txt - linhas em branco
+egrep -v "^$" file.txt - linhas não em branco
+egrep "b[a-i]g*" file.txt - (*) O caracter anterior pode aparecer, não aparecer ou aparacer varias vezes
+egrep "b[a-i]g+" file.txt - (+) O caracter anterior tem que aparecer uma ou mais vezes (não nenhuma vez)
+egrep "b[a-i]g?" file.txt - (?) O caracter anterior pode aparecer uma ou nenhuma vez (não varias vezes)
+egrep "O.Linux" file.txt - (.) Letra O e qualquer caracter e depois Linux
+egrep "O.*Linux" file.txt - (.*) Pode existir qualquer coisa entre O e Linux
+egrep "[Ll]inux." file.txt - Qualquer caracter depois de Linux
+egrep "[Ll]inux\." file.txt - Proteção para que retorne Linux. (interpreta o . como caracter)
+sed '/^#/d' file.txt - Linha que começa com # será deletada
+sed 's/[Ll]inux/Unix/g' file.txt - toda vez que encontrar linux ou Linux substitui por Unix
+ 
+18.O primeiro Script - Nomes, Permissoes e execução
+iniciar programa como #!bin/bash
+formas de executar programa: (1) ./programa (2). programa (3)bash programa (4)
+
+19. Definição do PATH
+PATH=$PATH:caminho/do/arquivo
+vi ~/.profile
+vi ~/.bashrc
+
+20. Comentários - Boa Práticas
+# 
+# 
+#
+
+28.Uso de instrução IF
+(1)
+if <comando-condição>
+then
+	comando 1
+	comando 2
+	comando 3
+fi
+(2)
+if <comando-condição>
+then
+	comando 1
+else
+	comando 2
+fi
+(3)
+if <comando-condição>
+then
+	comando 1
+elif <comando-condição>
+then
+	comando 2
+else
+	comando 3
+fi
+(4)
+test <expressão>
+-eq igual
+-ne diferente
+-gt maior que
+-ge maior ou igual que
+-lt menor que
+-le menor ou igual que
+TESTE STRING
+= uma string igual a outra
+!= uma string diferente da outra
+-n string não nula
+-z string nula
+TESTE ARQUIVOS
+-f é uma arquivo
+-d é um diretório
+-r tem permissão de leitura
+-w tem permissão de escrita
+-x tem permissão de execução
+-s possui tamanho maior que zero
+
+codigo de retorno - echo $?
+
+30.Uso da instrução CASE
+case $valor in 
+	padrão1)
+		comandos..
+	padrão2)
+		comandos..
+	*)
+		comandos
+esac
+
+case $opção in
+	1)
+	   echo opção 1
+	2) 
+	   echo opção 2
+	*)
+	   echo opção inexistente
+esac
+
+case $caracter in
+        [1-9])
+           echo opção 1 é um numero
+        [A-Z]) 
+           echo opção 2 é uma letra maiúscula
+        [a-z])
+           echo opção é uma letra minúscula
+esac
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git init
+git status
+git add "comidas_maravilhosas.html"
+git commit -m "adiciona o arquivo comidas_maravilhosas" (m é para dar um nome ao commit)
+git log
+git checkout -b b2
